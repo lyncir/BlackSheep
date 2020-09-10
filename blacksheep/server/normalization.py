@@ -315,7 +315,7 @@ def _get_sync_wrapper_for_controller(binders: Sequence[Binder], method):
             values.append(await binder.get_parameter(request))
 
         response = method(*values)
-        await controller.on_response(response)
+        await controller.on_response(request, response)
         return response
 
     return handler
@@ -334,7 +334,7 @@ def _get_async_wrapper_for_controller(binders: Sequence[Binder], method):
             values.append(await binder.get_parameter(request))
 
         response = await method(*values)
-        await controller.on_response(response)
+        await controller.on_response(request, response)
         return response
 
     return handler

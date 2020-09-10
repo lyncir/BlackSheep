@@ -114,7 +114,7 @@ class Controller(metaclass=ControllerMeta):
         specified in the __init__ constructor.
         """
 
-    async def on_response(self, response: Response):
+    async def on_response(self, request: Request, response: Response):
         """
         Callback called on every response returned using controller's methods.
         """

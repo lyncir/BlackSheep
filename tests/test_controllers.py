@@ -146,7 +146,7 @@ async def test_controller_supports_on_response():
         def greet(self):
             return "Hello World"
 
-        async def on_response(self, response: Response):
+        async def on_response(self, request: Request, response: Response):
             nonlocal k
             k += 1
             assert isinstance(response, Response)
@@ -154,7 +154,7 @@ async def test_controller_supports_on_response():
                 assert k < 10
             else:
                 assert k >= 10
-            return await super().on_response(response)
+            return await super().on_response(request, response)
 
         @get("/")
         async def index(self, request: Request):
